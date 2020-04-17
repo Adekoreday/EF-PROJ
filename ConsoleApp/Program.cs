@@ -1,23 +1,22 @@
 ﻿using System;
 using SamuriApp.Data;
 using SamuriApp.Domain;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ConsoleApp
 {
     internal class Program
     {
-        //public static SamuriDbContext context = new SamuriDbContext();
+        public static SamuriDbContext context = new SamuriDbContext();
 
         static void Main(string[] args)
         {
-            /*context.Database.EnsureCreated();
-            AddSamuri("Edward young");
-            GetSamuri();*/
+              AddSamuriWithQuote();
             Console.WriteLine("Hello World!");
         }
 
-        /*public static void  AddSamuri(string name)
+     /*   public static void  AddSamuri(string name)
         {
             var clan = new Clan()
             {
@@ -36,5 +35,17 @@ namespace ConsoleApp
                 Console.WriteLine($"this is our samuri {item.Name.ToString()}");
             }
         }*/
+        public static void AddSamuriWithQuote () {
+            var Samuri = new Samuri () {
+                Name = "damilola",
+                Quotes = new List<Quote> () {
+                    new Quote {
+                        Text = "samuri is the greatest shinobi"
+                    }
+                }
+            };
+            context.Samuris.Add(Samuri);
+            context.SaveChanges();
+        }
     }
 }
